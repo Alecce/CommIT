@@ -1,8 +1,5 @@
-
-
 <div>
   <form [formGroup]="form">
-    <!--<div class="form-group">-->
     <div formArrayName="quiz">
       <div *ngFor="let question of quiz; let i = index">
         <div *ngIf="current == i">{{question.text}}
@@ -14,13 +11,11 @@
                   {{answer}}
                 </label>
               </div>
-              <!--<input type="radio" [formControlName]=form.get('quiz').controls[i] value='j'> {{answer}}-->
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!--</div>-->
     <button [disabled]="current == 0" (click)="prev()">Prev</button>
     <button *ngIf="current != (quiz.length - 1)" (click)="next()">Next</button>
     <button *ngIf="current == (quiz.length - 1)" (click)="done()" [disabled]="isDone">Done</button>
