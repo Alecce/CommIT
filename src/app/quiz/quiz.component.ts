@@ -47,7 +47,7 @@ export class QuizComponent implements OnInit {
         correctAnswers++;
       }
     });
-    this.result = Math.round(correctAnswers * 100 / this.quiz.length);
+    this.result = correctAnswers * 100 / this.quiz.length;
     this.isDone = true;
   }
 }

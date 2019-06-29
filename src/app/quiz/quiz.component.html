@@ -21,6 +21,6 @@
     <button *ngIf="current == (quiz.length - 1)" (click)="done()" [disabled]="isDone">Done</button>
   </form>
   <div *ngIf="isDone">
-    Your result is {{result}}
+    Your result is {{result | number: '0.0-0'}}
   </div>
 </div>
