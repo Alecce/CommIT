@@ -1,0 +1,31 @@
+
+
+<div>
+  <form [formGroup]="form">
+    <!--<div class="form-group">-->
+    <div formArrayName="quiz">
+      <div *ngFor="let question of quiz; let i = index">
+        <div *ngIf="current == i">{{question.text}}
+          <div class="form-group" >
+            <div *ngFor="let answer of question.answers; let j = index">
+              <div class="form-check">
+                <input id="{{'question_' + i + '_answer_' + j}}" class="form-check-input" type="radio" formControlName="{{i}}" value="{{answer}}">
+                <label class="form-check-label" for="{{'question_' + i + '_answer_' + j}}">
+                  {{answer}}
+                </label>
+              </div>
+              <!--<input type="radio" [formControlName]=form.get('quiz').controls[i] value='j'> {{answer}}-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--</div>-->
+    <button [disabled]="current == 0" (click)="prev()">Prev</button>
+    <button *ngIf="current != (quiz.length - 1)" (click)="next()">Next</button>
+    <button *ngIf="current == (quiz.length - 1)" (click)="done()" [disabled]="isDone">Done</button>
+  </form>
+  <div *ngIf="isDone">
+    Your result is {{result}}
+  </div>
+</div>
