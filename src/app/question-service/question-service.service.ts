@@ -7,6 +7,7 @@ import {Observable} from 'rxjs';
 })
 export class QuestionService {
   constructor(private http: HttpClient) { }
+  // Get data from file and return Observable
   getQuiz() {
     return this.http.get('./assets/quiz.json');
   }

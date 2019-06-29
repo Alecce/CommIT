@@ -8,8 +8,9 @@ import {FormArray, FormControl, FormGroup} from '@angular/forms';
   styleUrls: ['./quiz.component.css']
 })
 export class QuizComponent implements OnInit {
-
+// quiz data
   quiz = [];
+  // number of displayed question
   current = 0;
   result = 0;
   isDone = false;
@@ -17,7 +18,7 @@ export class QuizComponent implements OnInit {
     quiz: new FormArray([])
   });
   constructor(private questionService: QuestionService) { }
-
+// Download quiz data and creating for according to it
   ngOnInit() {
     this.questionService.getQuiz().subscribe(data => {
       this.quiz = (data as any[]);
@@ -34,14 +35,14 @@ export class QuizComponent implements OnInit {
   next() {
     this.current++;
   }
+  // get answer for quistion # i
   answer(i) {
     return (this.form.get('quiz') as FormArray).controls[i].value;
   }
+  // counting correct answers, writing result, freezing quiz
   done() {
     let correctAnswers = 0;
     this.quiz.forEach((question, i) => {
-      console.log(question.correctAnswer);
-      console.log(this.answer(i));
       if (question.correctAnswer === this.answer(i)) {
         correctAnswers++;
       }
